@@ -6,7 +6,7 @@ public class Drink {
     cocaCola.setBrandStrategy(new CocaBrand());
     pepsi.setBrandStrategy(new PepsiBrand());
     
-    cocaCola.product();
-    pepsi.product();
+    cocaCola.product(); // System.out.println("Coca Cola!");
+    pepsi.product(); // System.out.println("Pepsi Cola!");
   }
 }
