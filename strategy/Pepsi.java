@@ -1,3 +1,3 @@
-public class Pepsi {
+public class Pepsi extends Cola {
 
 }
