@@ -5,7 +5,5 @@
 
 ## Java에서 이 패턴을 어디서 쓰고 있을까?
   + [[java.util.Comparator#compare()](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#compare-T-T-)]
-    + Collections#sort()
   + [[javax.servlet.http.HttpServlet](https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html)]
-    + service()와 모든 doXXX() 함수
   + [[javax.servlet.Filter#doFilter()](https://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter-javax.servlet.ServletRequest-javax.servlet.ServletResponse-javax.servlet.FilterChain-)]
