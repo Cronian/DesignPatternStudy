@@ -1,6 +1,6 @@
 public class CocaBrand implements BrandStrategy {
     private String brand;
-    public Coca() {
+    public CocaBrand() {
       this.brand = "Coca Cola";
     }
     
