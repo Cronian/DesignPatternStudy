@@ -1,6 +1,6 @@
 public Class Cola{
     private BrandStrategy brandStrategy;
-    public void product() {
+    public void brand() {
       brandStrategy.brand();
     }
     
