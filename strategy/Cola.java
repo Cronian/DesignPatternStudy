@@ -4,7 +4,7 @@ public Class Cola{
       brandStrategy.brand();
     }
     
-    public void setBrand(BrandStrategy brand) {
+    public void setBrandStrategy(BrandStrategy brand) {
         this.brandStrategy = brand;
     }
 }
