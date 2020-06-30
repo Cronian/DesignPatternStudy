@@ -4,6 +4,25 @@
   - 상속을 통해 서브클래스를 계속 만드는 방법이 비효율적일 때 사용.
     - 조합되는 서브클래스 수가 많을수록 유용
   ![deco](https://user-images.githubusercontent.com/22286957/86119403-5bf56800-bb0d-11ea-87af-b134f6d18ff9.PNG)
+  /~
+    // 음료
+    abstract class Beverage {
+        String description = "제목 없음";
+
+        public String getDescription() { return description; }
+        public abstract double cost();
+
+        @Override
+        public String toString() {
+            return getDescription() + ": $" + cost();
+        }
+    }
+
+    // 첨가물
+    abstract class CondimentDecorator extends Beverage {
+        public abstract String getDescription();
+    }
+  ~/
 # Adapter 패턴
   - 서로 __일치하하지 않는__ 인터페이스를 갖는 클래스들을 함께 동작시킴.
   ![adapter](https://user-images.githubusercontent.com/22286957/86119382-51d36980-bb0d-11ea-9165-6058e99a7604.PNG)
