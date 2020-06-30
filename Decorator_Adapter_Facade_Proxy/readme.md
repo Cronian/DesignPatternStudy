@@ -23,3 +23,6 @@
   - Proxy는 Subject를 __감싸고__ 호출을 위임.
 ## 위 패턴들의 차이점
   - 각 패턴들은 __목적__ 이 명확하게 다름.
+  
+### 해당 링크를 보고 정리..
+  - https://javarevisited.blogspot.com/2015/01/adapter-vs-decorator-vs-facade-vs-proxy-pattern-java.html
