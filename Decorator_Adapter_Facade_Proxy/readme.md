@@ -4,6 +4,7 @@
   - 상속을 통해 서브클래스를 계속 만드는 방법이 비효율적일 때 사용.
     - 조합되는 서브클래스 수가 많을수록 유용
   ![deco](https://user-images.githubusercontent.com/22286957/86119403-5bf56800-bb0d-11ea-87af-b134f6d18ff9.PNG)
+  ###음료와 첨가물 조합의 구현
   ``` JAVA
     // 음료
     abstract class Beverage {
@@ -22,6 +23,65 @@
     abstract class CondimentDecorator extends Beverage {
         public abstract String getDescription();
     }
+ ```
+ ### 베이스가 되는 두 음료
+ ``` JAVA
+  class Espresso extends Beverage {
+    public Espresso() { description = "에스프레소"; }
+
+    @Override
+    public double cost() { return 1.99; }
+}
+
+class HouseBlend extends Beverage {
+    public HouseBlend() { description = "하우스 블렌드 커피"; }
+
+    @Override
+    public double cost() { return 0.89; }
+}
+ ```
+ ### 모카 첨가물
+ ``` JAVA
+  class Mocha extends CondimentDecorator {
+    Beverage beverage;
+
+    public Mocha(Beverage beverage) {
+        description = "모카";
+        this.beverage = beverage;
+    }
+
+    @Override
+    public double cost() {
+        // 중요한 부분
+        return 0.20 + beverage.cost();
+    }
+
+    @Override
+    public String getDescription() {
+        // 중요한 부분
+        return beverage.getDescription() + ", " + description;
+    }
+}
+ ```
+ ### 사용 예시
+ ``` JAVA
+ Beverage beverage = new Espresso();
+System.out.println(beverage);
+
+beverage = new Mocha(beverage);
+System.out.println(beverage);
+
+Beverage beverage2 = new HouseBlend();
+System.out.println(beverage2);
+
+beverage2 = new Mocha(beverage2);
+System.out.println(beverage2);
+ ```
+ ``` JAVA
+에스프레소: $1.99
+에스프레소, 모카: $2.19
+하우스 블렌드 커피: $0.89
+하우스 블렌드 커피, 모카: $1.09
  ```
 # Adapter 패턴
   - 서로 __일치하하지 않는__ 인터페이스를 갖는 클래스들을 함께 동작시킴.
