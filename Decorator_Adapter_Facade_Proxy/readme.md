@@ -4,7 +4,8 @@
   - 상속을 통해 서브클래스를 계속 만드는 방법이 비효율적일 때 사용.
     - 조합되는 서브클래스 수가 많을수록 유용
   ![deco](https://user-images.githubusercontent.com/22286957/86119403-5bf56800-bb0d-11ea-87af-b134f6d18ff9.PNG)
-  ###음료와 첨가물 조합의 구현
+  
+ ### 음료와 첨가물 조합의 구현
   ``` JAVA
     // 음료
     abstract class Beverage {
@@ -83,6 +84,7 @@ System.out.println(beverage2);
 하우스 블렌드 커피: $0.89
 하우스 블렌드 커피, 모카: $1.09
  ```
+ - [출처](https://johngrib.github.io/wiki/decorator-pattern/)
 # Adapter 패턴
   - 서로 __일치하하지 않는__ 인터페이스를 갖는 클래스들을 함께 동작시킴.
   ![adapter](https://user-images.githubusercontent.com/22286957/86119382-51d36980-bb0d-11ea-9165-6058e99a7604.PNG)
