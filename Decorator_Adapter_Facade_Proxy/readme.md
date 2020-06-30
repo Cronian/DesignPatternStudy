@@ -84,10 +84,69 @@ System.out.println(beverage2);
 하우스 블렌드 커피: $0.89
 하우스 블렌드 커피, 모카: $1.09
  ```
- - [출처](https://johngrib.github.io/wiki/decorator-pattern/)
+ - [[출처]기계인간 블로그 / 데코레이터 패턴](https://johngrib.github.io/wiki/decorator-pattern/)
 # Adapter 패턴
   - 서로 __일치하하지 않는__ 인터페이스를 갖는 클래스들을 함께 동작시킴.
   ![adapter](https://user-images.githubusercontent.com/22286957/86119382-51d36980-bb0d-11ea-9165-6058e99a7604.PNG)
+  ### 헤드퍼스트 디자인패턴 내 코드 (칠면조 객체로 오리만들기)
+  ### 오리 인터페이스
+  ``` JAVA
+  interface Duck {
+  public void quack();  // 오리는 꽉꽉 소리를 낸다
+  public void fly();
+}
+
+class MallardDuck implements Duck {
+  @Override
+  public void quack() {
+    System.out.println("Quack");
+  }
+  @Override
+  public void fly() {
+    System.out.println("I'm flying");
+  }
+}
+  ```
+  ### 칠면조 인터페이스
+  ``` JAVA
+   interface Turkey {
+  public void gobble();   // 칠면조는 골골거리는 소리를 낸다
+  public void fly();
+}
+
+class WildTurkey implements Turkey {
+  @Override
+  public void gobble() {
+    System.out.println("Gobble gobble");
+  }
+  @Override
+  public void fly() {
+    System.out.println("I'm flying a short distance");
+  }
+}
+  ```
+  ### 어뎁터 구현
+  ``` JAVA
+  class TurkeyAdapter implements Duck {
+  Turkey turkey;
+
+  public TurkeyAdapter(Turkey turkey) {
+    this.turkey = turkey;
+  }
+  @Override
+  public void quack() {
+    turkey.gobble();
+  }
+  @Override
+  public void fly() {
+    // 칠면조는 멀리 날지 못하므로 다섯 번 날아서 오리처럼 긴 거리를 날게 한다
+    for (int i = 0; i < 5; i++) {
+      turkey.fly();
+    }
+  }
+}
+  ```
+  - [[출처]기계인간 블로그 / 어댑터 패턴](https://johngrib.github.io/wiki/adapter-pattern/)
 # Facade 패턴
   - 서브시스템의 일련의 인터페이스에 대한 통합된 인터페이스를 제공.
   ![facade](https://user-images.githubusercontent.com/22286957/86119453-729bbf00-bb0d-11ea-8fb2-85fbbe59df11.png)
