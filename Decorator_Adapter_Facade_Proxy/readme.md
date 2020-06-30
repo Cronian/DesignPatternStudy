@@ -149,7 +149,127 @@ class WildTurkey implements Turkey {
   - [[출처]기계인간 블로그 / 어댑터 패턴](https://johngrib.github.io/wiki/adapter-pattern/)
 # Facade 패턴
   - 서브시스템의 일련의 인터페이스에 대한 통합된 인터페이스를 제공.
-  ![facade](https://user-images.githubusercontent.com/22286957/86119453-729bbf00-bb0d-11ea-8fb2-85fbbe59df11.png)
+  ![facade](https://user-images.githubusercontent.com/22286957/86125531-cad7be80-bb17-11ea-8385-1782ff96b9dd.png)
+### 홈시어터 예제 클래스
+![home](https://user-images.githubusercontent.com/22286957/86125601-e773f680-bb17-11ea-9098-df3ef1dca379.png)
+### 홈시어터 Facade
+![home2](https://user-images.githubusercontent.com/22286957/86125671-04a8c500-bb18-11ea-9789-50bf788acbbb.png)
+``` JAVA
+public class HomeTheaterFacade {
+
+           Amplifier amp;
+
+           Tuner tuner;
+
+           Dvdplayer dvd;
+
+           CdPlayer cd;
+
+           Projector projector;
+
+           TheaterLights lights;
+
+           Screen screen;
+
+           PopcornPopper popper;
+
+
+
+           public HomeTheaterFacade( Amplifier amp,
+
+                                                Tuner tuner, 
+
+                                                DvdPlayer dvd,
+
+                                                CdPlayer cd,
+
+                                                Projector projector,
+
+                                                Screen screen,
+
+                                                TheaterLights lights,
+
+                                                PopcornPopper popper) {
+
+                    this.amp = amp;
+
+                    this.tunner = tuner;
+
+                    this.dvd = dvd;
+
+                    this.cd = cd;
+
+                    this.projector = projector;
+
+                    this.screen = screen;
+
+                    this.lights = lights;
+
+                    this.popper = popper;
+
+          }
+
+
+
+          public void watchMovie (String movie) {
+
+                    System.out.println("Get ready to watch a movie...");
+
+                    popper.on();
+
+                    popper.pop();
+
+                    lights.dim(10);
+
+                    screen.down();
+
+                    projector.on();
+
+                    projector.wideScreenMode();
+
+                    amp.on();
+
+                    amp.setDvd(dvd);
+
+                    amp.setsurroundSound();
+
+                    amp.setVolume(5);
+
+                    dvd.on();
+
+                    dvd.play(movie);
+
+          }
+
+
+
+          public void endMovie() {
+
+                    System.out.println("Shutting movie theater down...");
+
+                    popper.off();
+
+                    lights.on();
+
+                    screen.up();
+
+                    projector.off();
+
+                    amp.off();
+
+                    dvd.stop();
+
+                    dvd.eject();
+
+                    dvd.off();
+
+          }
+
+
+
+ }
+```
+- [[출처] Facade 패턴 ](https://jusungpark.tistory.com/23)
 # Proxy 패턴
   - 실제 기능을 수행하는 객체 대신 가상의 객체를 사용해 로직의 흐름 제어
     - 가상프록시
