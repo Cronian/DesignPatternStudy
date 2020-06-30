@@ -156,57 +156,31 @@ class WildTurkey implements Turkey {
 ![home2](https://user-images.githubusercontent.com/22286957/86125671-04a8c500-bb18-11ea-9789-50bf788acbbb.png)
 ``` JAVA
 public class HomeTheaterFacade {
-
            Amplifier amp;
-
            Tuner tuner;
-
            Dvdplayer dvd;
-
            CdPlayer cd;
-
            Projector projector;
-
            TheaterLights lights;
-
            Screen screen;
-
            PopcornPopper popper;
 
-
-
            public HomeTheaterFacade( Amplifier amp,
-
                                                 Tuner tuner, 
-
                                                 DvdPlayer dvd,
-
                                                 CdPlayer cd,
-
                                                 Projector projector,
-
                                                 Screen screen,
-
                                                 TheaterLights lights,
-
                                                 PopcornPopper popper) {
-
                     this.amp = amp;
-
                     this.tunner = tuner;
-
                     this.dvd = dvd;
-
                     this.cd = cd;
-
                     this.projector = projector;
-
                     this.screen = screen;
-
                     this.lights = lights;
-
                     this.popper = popper;
-
           }
 
 
@@ -214,29 +188,17 @@ public class HomeTheaterFacade {
           public void watchMovie (String movie) {
 
                     System.out.println("Get ready to watch a movie...");
-
                     popper.on();
-
                     popper.pop();
-
                     lights.dim(10);
-
                     screen.down();
-
                     projector.on();
-
                     projector.wideScreenMode();
-
                     amp.on();
-
                     amp.setDvd(dvd);
-
                     amp.setsurroundSound();
-
                     amp.setVolume(5);
-
                     dvd.on();
-
                     dvd.play(movie);
 
           }
@@ -246,21 +208,13 @@ public class HomeTheaterFacade {
           public void endMovie() {
 
                     System.out.println("Shutting movie theater down...");
-
                     popper.off();
-
                     lights.on();
-
                     screen.up();
-
                     projector.off();
-
                     amp.off();
-
                     dvd.stop();
-
                     dvd.eject();
-
                     dvd.off();
 
           }
@@ -274,6 +228,7 @@ public class HomeTheaterFacade {
   - 실제 기능을 수행하는 객체 대신 가상의 객체를 사용해 로직의 흐름 제어
     - 가상프록시
     - 보호프록시
+    - https://jdm.kr/blog/235
     
   ![proxy](https://user-images.githubusercontent.com/22286957/86119420-63b50c80-bb0d-11ea-9483-10aca33dbd67.gif)
 ## 위 패턴들의 유사점
