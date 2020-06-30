@@ -14,6 +14,7 @@
   - 실제 기능을 수행하는 객체 대신 가상의 객체를 사용해 로직의 흐름 제어
     - 가상프록시
     - 보호프록시
+    
   ![proxy](https://user-images.githubusercontent.com/22286957/86119420-63b50c80-bb0d-11ea-9483-10aca33dbd67.gif)
 ## 위 패턴들의 유사점
   - Adapter 패턴은 interface를 __감싸서__ 호출을 위임.
