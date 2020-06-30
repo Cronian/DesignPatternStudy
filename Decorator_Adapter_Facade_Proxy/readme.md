@@ -23,6 +23,9 @@
   - Proxy는 Subject를 __감싸고__ 호출을 위임.
 ## 위 패턴들의 차이점
   - 각 패턴들은 __목적__ 이 명확하게 다름.
-  
+  - Adapter 패턴의 목적은 interface 전환하여 두개의 컴포넌트가 함께 동작하도록 하는 것.
+  - Decorator 패턴은 실행시점에 새로운 기능추가가 목적.
+  - Facade 패턴은 간단한 interface를 제공하여 클라이언트가 복잡한 내부를 알 필요 없도록 하는 것.
+  - Proxy 패턴은 Object의 접근제어가 주 목적. 클라이언트의 직접적인 접근을 막고, 실제 object처럼 동작.
 ### 해당 링크를 보고 정리..
   - https://javarevisited.blogspot.com/2015/01/adapter-vs-decorator-vs-facade-vs-proxy-pattern-java.html
