@@ -227,8 +227,136 @@ public class HomeTheaterFacade {
 # Proxy 패턴
   - 실제 기능을 수행하는 객체 대신 가상의 객체를 사용해 로직의 흐름 제어
     - 가상프록시
+      - 지연 초기화
+    ``` JAVA
+    interface TextFile {
+      String fetch();
+    }  
+    ```
+    ``` JAVA
+      class SecretTextFile implements TextFile {
+        private String plainText;
+
+        public SecretTextFile(String fileName) {
+          // 특별한 복호화 기법을 이용해 데이터를 복원해서 내용을 반환합니다.
+          this.plainText = SecretFileHolder.decodeByFileName(fileName);
+        }
+
+        @Override
+        public String fetch() {
+          return plainText;
+        }
+      }
+    ```
+    ``` JAVA
+    class ProxyTextFile implements TextFile {
+        private String fileName;
+        private TextFile textFile;
+
+        public ProxyTextFile(String fileName) {
+            this.fileName = fileName;
+        }
+
+        @Override
+        public String fetch() {
+            if (textFile == null) {
+                textFile = new SecretTextFile(fileName);
+            }
+            return "[proxy] " + textFile.fetch(); // 프록시 객체를 사용하는 경우를 확인하기 위해 [proxy] 문구를 넣었습니다.
+        }
+    }
+    ```
     - 보호프록시
-    - https://jdm.kr/blog/235
+      - 기본 인터페이스
+    ``` JAVA
+    // 직책 등급(차례대로 조직원, 조직장, 부사장)
+    enum GRADE {
+        Staff, Manager, VicePresident
+    }
+
+    // 구성원
+    interface Employee {
+        String getName(); // 구성원의 이름
+        GRADE getGrade(); // 구성원의 직책
+        String getInformation(Employee viewer); // 구성원의 인사정보(매개변수는 조회자)
+    }
+
+    // 일반 구성원
+    class NormalEmployee implements Employee {
+        private String name;
+        private GRADE grade;
+
+        public NormalEmployee(String name, GRADE grade) {
+            this.name = name;
+            this.grade = grade;
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public GRADE getGrade() {
+            return grade;
+        }
+
+        // 기본적으로 자신의 인사정보는 누구나 열람할 수 있도록 되어있습니다.
+        @Override
+        public String getInformation(Employee viewer) {
+            return "Display " + getGrade().name() + " '" + getName() + "' personnel information.";
+        }
+    }
+    ```
+      - 보호 프록시로 구현
+    ``` JAVA
+    // 인사정보가 보호된 구성원(인사 정보 열람 권한 없으면 예외 발생)
+class ProtectedEmployee implements Employee {
+    private Employee employee;
+
+    public ProtectedEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    @Override
+    public String getInformation(Employee viewer) {
+        // 본인 인사정보 조회
+        if (this.employee.getGrade() == viewer.getGrade() && this.employee.getName().equals(viewer.getName())) {
+            return this.employee.getInformation(viewer);
+        }
+
+        switch (viewer.getGrade()) {
+            case VicePresident:
+            	// 부사장은 조직장, 조직원들을 볼 수 있다.
+                if (this.employee.getGrade() == GRADE.Manager || this.employee.getGrade() == GRADE.Staff) {
+                    return this.employee.getInformation(viewer);
+                }
+            case Manager:
+                if (this.employee.getGrade() == GRADE.Staff) { // 조직장은 조직원들을 볼 수 있다.
+                    return this.employee.getInformation(viewer);
+                }
+            case Staff:
+            default:
+                throw new NotAuthorizedException(); // 조직원들은 다른 사람의 인사정보를 볼 수 없다.
+        }
+    }
+
+    @Override
+    public String getName() {
+        return employee.getName();
+    }
+
+    @Override
+    public GRADE getGrade() {
+        return employee.getGrade();
+    }
+}
+
+class NotAuthorizedException extends RuntimeException {
+    private static final long serialVersionUID = -1714144282967712658L;
+}
+```
+    - [[출처] 프록시 패턴](https://jdm.kr/blog/235)
     
   ![proxy](https://user-images.githubusercontent.com/22286957/86119420-63b50c80-bb0d-11ea-9483-10aca33dbd67.gif)
 ## 위 패턴들의 유사점
