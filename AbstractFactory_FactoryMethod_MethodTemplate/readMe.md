@@ -64,6 +64,7 @@
                                        │ +remove():  void          │
                                        └───────────────────────────┘
   ```
+  - [출처](https://johngrib.github.io/wiki/abstract-factory-pattern/)
   
   # 팩토리 메소드 패턴 (Factory Method)
   ![fm1](https://user-images.githubusercontent.com/22286957/87487306-4426f380-c678-11ea-80eb-40162d5c62d9.gif)
@@ -119,4 +120,4 @@
       }
   }
   ```
-  -- [출처](https://johngrib.github.io/wiki/factory-method-pattern/)
+  - [출처](https://johngrib.github.io/wiki/factory-method-pattern/)
