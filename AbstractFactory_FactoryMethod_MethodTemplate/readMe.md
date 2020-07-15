@@ -121,3 +121,92 @@
   }
   ```
   - [출처](https://johngrib.github.io/wiki/factory-method-pattern/)
+  
+  # 템플릿 메소드 패턴 (Template Method pattern)
+  ![tm1](https://user-images.githubusercontent.com/22286957/87500883-a7c11900-c698-11ea-89cd-873ca79619e8.png)
+  - 알고리즘의 구조 자체는 그대로 두고, 각 단계 처리를 서브클래스에서 재정의하여 사용할 수 있도록 함.
+  
+  ## 구현전 코드
+  ``` JAVA
+    public class Coffee {
+      // 커피 만드는 방법
+      void prepareRecipe() {
+          boilWater();
+          brewCoffeeGrinds();
+          pourInCup();
+          addSugarAndMilk();
+      }
+      public void boilWater() {
+          System.out.println("물 끓이는 중");
+      }
+      public void brewCoffeeGrinds() {
+          System.out.println("필터를 통해서 커피를 우려내는 중");
+      }
+      public void pourInCup() {
+          System.out.println("컵에 따르는 중");
+      }
+      public void addSugarAndMilk() {
+          System.out.println("설탕과 우유를 추가하는 중");
+      }
+  }
+  public class Tea {
+      // 홍차 만드는 방법
+      void prepareRecipe() {
+          boilWater();
+          steepTeaBag();
+          pourInCup();
+          addLemon();
+      }
+      public void boilWater() {
+          System.out.println("물 끓이는 중");
+      }
+      public void steepTeaBag() {
+          System.out.println("차를 우려내는 중");
+      }
+      public void pourInCup() {
+          System.out.println("컵에 따르는 중");
+      }
+      public void addLemon() {
+          System.out.println("레몬을 추가하는 중");
+      }
+  }
+  ```
+  
+  ## 구현후
+  ``` JAVA
+   public abstract class CaffeineBeverage {
+      // 알고리즘을 갖고 있는 이 메소드를 '템플릿 메소드'라 부른다
+      final void prepareRecipe() {
+          boilWater();
+          brew();
+          pourInCup();
+          addCondiments();
+      }
+
+      abstract void brew();           // 서브클래스에서 구현
+      abstract void addCondiments();  // 서브클래스에서 구현
+
+      void boilWater() {
+          System.out.println("물 끓이는 중");
+      }
+      void pourInCup() {
+          System.out.println("컵에 따르는 중");
+      }
+  }
+  public class Coffee extends CaffeineBeverage {
+      public void brew() {
+          System.out.println("필터로 커피를 우려내는 중");
+      }
+      public void addCondiments() {
+          System.out.println("설탕과 커피를 추가하는 중");
+      }
+  }
+  public class Tea extends CaffeineBeverage {
+      public void brew() {
+          System.out.println("차를 우려내는 중");
+      }
+      public void addCondiments() {
+          System.out.println("레몬을 추가하는 중");
+      }
+  }
+  ```
