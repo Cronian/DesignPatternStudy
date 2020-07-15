@@ -128,7 +128,7 @@
   
   ## 구현전 코드
   ``` JAVA
-    public class Coffee {
+   public class Coffee {
       // 커피 만드는 방법
       void prepareRecipe() {
           boilWater();
@@ -174,7 +174,7 @@
   
   ## 구현후
   ``` JAVA
-   public abstract class CaffeineBeverage {
+  public abstract class CaffeineBeverage {
       // 알고리즘을 갖고 있는 이 메소드를 '템플릿 메소드'라 부른다
       final void prepareRecipe() {
           boilWater();
@@ -210,3 +210,9 @@
       }
   }
   ```
+  - [출처](https://johngrib.github.io/wiki/template-method-pattern/)
+  
+  # 템플릿 메소드와 팩토리 메소드의 차이점
+    - 템플릿 메소드는 슈퍼 클래스에 기본적인 메소드가 정의되어 있고, 세부적인 메소드는 추상 메소드로 둬 서브클래스에서 구현해 사용함
+    - 팩토리 메소드는 서브 클래스에서 구체적인 오브젝트 __생성방법__을 결정하게 하는 것
+  
